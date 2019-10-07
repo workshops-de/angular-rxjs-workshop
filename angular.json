@@ -1,5 +1,8 @@
 {
   "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
   "projects": {
     "client": {
       "projectType": "application",
