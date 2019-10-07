@@ -1,0 +1,24 @@
+{
+  "npmScope": "rxjs-dos",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "rxjs-dos-e2e": {
+      "tags": []
+    },
+    "rxjs-dos": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    }
+  }
+}
