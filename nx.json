@@ -8,9 +8,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "rxjs-dos-e2e": {
-      "tags": []
-    },
     "rxjs-dos": {
       "tags": []
     },
