@@ -2,6 +2,7 @@
 
 # Prerequisites
 
+- Chrome or Firefox
 - [Node 10](https://nodejs.org/) or higher
 - [Visual Studio Code](https://code.visualstudio.com/), [WebStorm](https://www.jetbrains.com/webstorm/) or your preferred TypeScript IDE.
 
