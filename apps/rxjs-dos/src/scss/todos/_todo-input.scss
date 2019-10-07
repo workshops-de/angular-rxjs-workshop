@@ -1,0 +1,12 @@
+@import './todo-colours';
+
+.todo__input {
+  font: 500 16px Roboto, sans-serif;
+  min-width: 200px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 0;
+  background: $control-light-background-color;
+}

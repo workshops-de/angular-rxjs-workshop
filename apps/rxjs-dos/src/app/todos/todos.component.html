@@ -1,0 +1,13 @@
+<h1 class="todo__h1">todos</h1>
+<nde-todo-quick-add (create)="addTodo($event)"></nde-todo-quick-add>
+<nde-todos-link-navigation></nde-todos-link-navigation>
+<nde-todo-counter
+  [count]="activeTodos"
+  class="todo__component--spaced"
+></nde-todo-counter>
+<nde-todo-checker
+  [todo]="todo"
+  (toggle)="completeOrIncompleteTodo($event)"
+  (remove)="removeTodo($event)"
+  *ngFor="let todo of todos"
+></nde-todo-checker>

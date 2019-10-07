@@ -1,0 +1,8 @@
+<div class="todo">
+  <label class="todo__label" [ngClass]="{ 'todo--is-done': todo.isDone }"
+    >{{ todo.text }}
+    <input type="checkbox" [checked]="todo.isDone" (change)="emitToggle()" />
+    <span class="todo__checkmark"></span>
+  </label>
+  <span class="todo__delete" (click)="emitRemove()"></span>
+</div>

@@ -1,0 +1,11 @@
+@import './todo-colours';
+
+.todo__button--primary {
+  background: $primary;
+  color: $primary-text-color;
+  padding: 8px 16px 8px 16px;
+  border: 0;
+  font: 300 16px Roboto, sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+}

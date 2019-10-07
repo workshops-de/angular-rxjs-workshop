@@ -1,0 +1,32 @@
+@import './todo-colours';
+
+.todo__h1 {
+  text-align: center;
+  font: 300 40px Roboto, sans-serif;
+}
+
+.todo__text--emphasize {
+  font-weight: 700;
+  color: $primary;
+  padding-right: 4px;
+}
+.todo__text--default {
+  color: $text-color;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &::visited {
+    color: $primary;
+  }
+
+  &::hover {
+    text-decoration: underline;
+  }
+}
+
+.todo__link--active {
+  text-decoration: underline;
+}
