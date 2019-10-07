@@ -1,39 +1,36 @@
 {
   "version": 1,
   "projects": {
-    "rxjs-dos": {
+    "client": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/rxjs-dos",
-      "sourceRoot": "apps/rxjs-dos/src",
-      "prefix": "rxjs-dos",
+      "root": "apps/client",
+      "sourceRoot": "apps/client/src",
+      "prefix": "client",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/rxjs-dos",
-            "index": "apps/rxjs-dos/src/index.html",
-            "main": "apps/rxjs-dos/src/main.ts",
-            "polyfills": "apps/rxjs-dos/src/polyfills.ts",
-            "tsConfig": "apps/rxjs-dos/tsconfig.app.json",
+            "outputPath": "dist/apps/client",
+            "index": "apps/client/src/index.html",
+            "main": "apps/client/src/main.ts",
+            "polyfills": "apps/client/src/polyfills.ts",
+            "tsConfig": "apps/client/tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "apps/rxjs-dos/src/favicon.ico",
-              "apps/rxjs-dos/src/assets"
-            ],
-            "styles": ["apps/rxjs-dos/src/styles.scss"],
+            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+            "styles": ["apps/client/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/rxjs-dos/src/environments/environment.ts",
-                  "with": "apps/rxjs-dos/src/environments/environment.prod.ts"
+                  "replace": "apps/client/src/environments/environment.ts",
+                  "with": "apps/client/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -63,37 +60,37 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rxjs-dos:build",
-            "proxyConfig": "apps/rxjs-dos/proxy.conf.json"
+            "browserTarget": "client:build",
+            "proxyConfig": "apps/client/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rxjs-dos:build:production"
+              "browserTarget": "client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rxjs-dos:build"
+            "browserTarget": "client:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/rxjs-dos/tsconfig.app.json",
-              "apps/rxjs-dos/tsconfig.spec.json"
+              "apps/client/tsconfig.app.json",
+              "apps/client/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/rxjs-dos/**"]
+            "exclude": ["**/node_modules/**", "!apps/client/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/rxjs-dos/jest.config.js",
-            "tsConfig": "apps/rxjs-dos/tsconfig.spec.json",
-            "setupFile": "apps/rxjs-dos/src/test-setup.ts"
+            "jestConfig": "apps/client/jest.config.js",
+            "tsConfig": "apps/client/tsconfig.spec.json",
+            "setupFile": "apps/client/src/test-setup.ts"
           }
         }
       }
@@ -190,5 +187,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "rxjs-dos"
+  "defaultProject": "client"
 }

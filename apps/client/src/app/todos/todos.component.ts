@@ -6,7 +6,7 @@ import { Todo } from './models';
 import { TodosService } from './shared/todos.service';
 
 @Component({
-  selector: 'nde-todos',
+  selector: 'dos-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })

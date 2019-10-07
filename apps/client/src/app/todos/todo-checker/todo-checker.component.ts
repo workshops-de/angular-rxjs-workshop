@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../models';
 
 @Component({
-  selector: 'nde-todo-checker',
+  selector: 'dos-todo-checker',
   templateUrl: './todo-checker.component.html',
   styleUrls: ['./todo-checker.component.scss']
 })

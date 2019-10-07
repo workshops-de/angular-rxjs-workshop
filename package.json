@@ -43,6 +43,7 @@
     "@nestjs/platform-express": "^6.2.4",
     "@nrwl/angular": "8.6.0",
     "core-js": "^2.5.4",
+    "faker": "^4.1.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.4.0",
     "zone.js": "^0.9.1"

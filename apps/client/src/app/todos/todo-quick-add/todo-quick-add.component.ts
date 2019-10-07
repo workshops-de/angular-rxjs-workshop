@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Todo } from '../models';
 
 @Component({
-  selector: 'nde-todo-quick-add',
+  selector: 'dos-todo-quick-add',
   templateUrl: './todo-quick-add.component.html',
   styleUrls: ['./todo-quick-add.component.scss']
 })

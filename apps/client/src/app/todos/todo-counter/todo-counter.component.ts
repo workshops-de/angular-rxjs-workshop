@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'nde-todo-counter',
+  selector: 'dos-todo-counter',
   templateUrl: './todo-counter.component.html',
   styleUrls: ['./todo-counter.component.scss']
 })

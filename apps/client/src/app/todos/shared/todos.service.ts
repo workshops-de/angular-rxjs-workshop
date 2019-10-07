@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from '../models';
 
-const todosUrl = 'http://localhost:3000/todos';
+const todosUrl = 'http://localhost:3333/api';
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {

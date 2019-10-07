@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'rxjs-dos',
+  name: 'client',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/rxjs-dos',
+  coverageDirectory: '../../coverage/apps/client',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'
