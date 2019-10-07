@@ -26,5 +26,5 @@ npm start
 
 ```bash
 # Open in own terminal session
-npm start:be
+npm run start:be
 ```
