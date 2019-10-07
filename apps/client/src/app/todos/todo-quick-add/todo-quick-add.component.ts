@@ -10,7 +10,12 @@ export class TodoQuickAddComponent {
   @Output() create = new EventEmitter<Todo>();
 
   emitCreate(textInput: HTMLInputElement) {
-    this.create.emit({ text: textInput.value, isDone: false });
+    this.create.emit({
+      id: 1,
+      text: textInput.value,
+      isDone: false,
+      isPinned: false
+    });
     textInput.value = '';
   }
 }
