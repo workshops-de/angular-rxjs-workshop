@@ -1,0 +1,6 @@
+{
+  "ext": "ts",
+  "exec": "ts-node --project apps/playground/tsconfig.json apps/playground/src/index.ts",
+  "delay": 500,
+  "watch": ["./src"]
+}
