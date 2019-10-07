@@ -15,16 +15,24 @@ npm install
 
 ## Start
 
+### Playground
+
+```bash
+# Open in own terminal session
+npm run serve:pl
+
+```
+
 ### Client
 
 ```bash
 # Open in own terminal session
-npm start
+npm run serve:cl
 ```
 
 ### API
 
 ```bash
 # Open in own terminal session
-npm run start:be
+npm run serve:be
 ```
