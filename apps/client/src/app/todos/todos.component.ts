@@ -34,8 +34,4 @@ export class TodosComponent implements OnDestroy {
       this.todosService.completeOrIncomplete(todoForUpdate).subscribe()
     );
   }
-
-  removeTodo(todoForRemoval: Todo) {
-    this.sink.add(this.todosService.remove(todoForRemoval).subscribe());
-  }
 }
