@@ -25,7 +25,7 @@ export class TodoController {
     return this.todosInMemory.getAll();
   }
 
-  @Put()
+  @Put(':id')
   async update(@Body() todo: Todo) {
     await this.takeABreak();
 
