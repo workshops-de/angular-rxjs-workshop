@@ -1,8 +1,8 @@
 import { Component, HostBinding, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { Todo } from './models';
 import { TodosService } from './shared/todos.service';
-import { catchError, tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { Toolbelt } from './shared/toolbelt.service';
 
 @Component({
@@ -16,8 +16,11 @@ export class TodosComponent implements OnDestroy {
 
   @HostBinding('class') cssClass = 'todo__app';
 
+  reloadEvery5Seconds$ = timer(0, 5000);
+
   constructor(private todosService: TodosService, private toolbelt: Toolbelt) {
-    this.todos$ = this.todosService.query().pipe(
+    this.todos$ = this.reloadEvery5Seconds$.pipe(
+      switchMap(() => this.todosService.query()),
       tap({
         error: () => this.toolbelt.offerHardRelaod()
       })
