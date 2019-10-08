@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Todo } from './models';
 import { TodosService } from './shared/todos.service';
 import { catchError, tap } from 'rxjs/operators';
+import { Toolbelt } from './shared/toolbelt.service';
 
 @Component({
   selector: 'dos-todos',
@@ -11,16 +12,14 @@ import { catchError, tap } from 'rxjs/operators';
 export class TodosComponent implements OnDestroy {
   private sink = new Subscription();
 
-  isErrorShown: boolean;
   todos$: Observable<Todo[]>;
 
   @HostBinding('class') cssClass = 'todo__app';
 
-  constructor(private todosService: TodosService) {
+  constructor(private todosService: TodosService, private toolbelt: Toolbelt) {
     this.todos$ = this.todosService.query().pipe(
       tap({
-        next: () => (this.isErrorShown = false),
-        error: () => (this.isErrorShown = true)
+        error: () => this.toolbelt.offerHardRelaod()
       })
     );
   }

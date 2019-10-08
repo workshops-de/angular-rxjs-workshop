@@ -26,5 +26,15 @@ export class Toolbelt {
     }
   };
 
-  handleTodosLoadError() {}
+  offerHardRelaod() {
+    const openDialog = this.snackbar.open(
+      'Was not able loading todos',
+      'Retry'
+    );
+
+    const afterAction = openDialog.onAction().subscribe(() => {
+      location.reload();
+      afterAction.unsubscribe();
+    });
+  }
 }

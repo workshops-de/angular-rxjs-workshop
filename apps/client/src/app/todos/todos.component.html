@@ -1,5 +1,4 @@
 <h1 class="todo__h1">todos</h1>
-<dos-todos-api-error *ngIf="isErrorShown"></dos-todos-api-error>
 <ng-container *ngIf="todos$ | async as todos; else loadingIndicator">
   <dos-todo-counter
     [count]="todos.length"
