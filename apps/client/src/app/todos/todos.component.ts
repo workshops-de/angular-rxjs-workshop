@@ -1,34 +1,27 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Component, HostBinding, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Todo } from './models';
 import { TodosService } from './shared/todos.service';
+import { catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'dos-todos',
-  templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  templateUrl: './todos.component.html'
 })
-export class TodosComponent implements OnInit, OnDestroy {
+export class TodosComponent implements OnDestroy {
   private sink = new Subscription();
 
-  todos: Todo[] = [];
+  isErrorShown: boolean;
+  todos$: Observable<Todo[]>;
 
   @HostBinding('class') cssClass = 'todo__app';
 
-  constructor(
-    private todosService: TodosService,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    this.sink.add(
-      this.route.paramMap
-        .pipe(
-          switchMap(paramMap => this.todosService.query(paramMap.get('query')))
-        )
-        .subscribe(todos => (this.todos = todos))
+  constructor(private todosService: TodosService) {
+    this.todos$ = this.todosService.query().pipe(
+      tap({
+        next: () => (this.isErrorShown = false),
+        error: () => (this.isErrorShown = true)
+      })
     );
   }
 
@@ -36,34 +29,13 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.sink.unsubscribe();
   }
 
-  get activeTodos() {
-    return this.todos.filter(todo => !todo.isDone).length;
-  }
-
-  addTodo(newTodo: Todo) {
-    this.sink.add(
-      this.todosService
-        .create(newTodo)
-        .pipe(switchMap(() => this.todosService.query()))
-        .subscribe(todos => (this.todos = todos))
-    );
-  }
-
   completeOrIncompleteTodo(todoForUpdate: Todo) {
     this.sink.add(
-      this.todosService
-        .completeOrIncomplete(todoForUpdate)
-        .pipe(switchMap(() => this.todosService.query()))
-        .subscribe(todos => (this.todos = todos))
+      this.todosService.completeOrIncomplete(todoForUpdate).subscribe()
     );
   }
 
   removeTodo(todoForRemoval: Todo) {
-    this.sink.add(
-      this.todosService
-        .remove(todoForRemoval)
-        .pipe(switchMap(() => this.todosService.query()))
-        .subscribe(todos => (this.todos = todos))
-    );
+    this.sink.add(this.todosService.remove(todoForRemoval).subscribe());
   }
 }

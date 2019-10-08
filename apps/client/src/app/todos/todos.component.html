@@ -1,13 +1,18 @@
 <h1 class="todo__h1">todos</h1>
-<dos-todo-quick-add (create)="addTodo($event)"></dos-todo-quick-add>
-<dos-todos-link-navigation></dos-todos-link-navigation>
-<dos-todo-counter
-  [count]="activeTodos"
-  class="todo__component--spaced"
-></dos-todo-counter>
-<dos-todo-checker
-  [todo]="todo"
-  (toggle)="completeOrIncompleteTodo($event)"
-  (remove)="removeTodo($event)"
-  *ngFor="let todo of todos"
-></dos-todo-checker>
+<dos-todos-api-error *ngIf="isErrorShown"></dos-todos-api-error>
+<ng-container *ngIf="todos$ | async as todos; else loadingIndicator">
+  <dos-todo-counter
+    [count]="todos.length"
+    class="todo__component--spaced"
+  ></dos-todo-counter>
+  <dos-todo-checker
+    [todo]="todo"
+    (toggle)="completeOrIncompleteTodo($event)"
+    (remove)="removeTodo($event)"
+    *ngFor="let todo of todos"
+  ></dos-todo-checker>
+</ng-container>
+
+<ng-template #loadingIndicator>
+  <div *ngIf="!isErrorShown">Get todos ready for you...</div>
+</ng-template>
