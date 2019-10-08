@@ -6,7 +6,9 @@ import {
   exhaustMap,
   first,
   map,
+  mapTo,
   retryWhen,
+  skip,
   switchMap,
   take,
   tap,
@@ -38,6 +40,10 @@ export class TodosComponent implements OnInit, OnDestroy {
   mostRecentTodos$: Observable<Todo[]>;
   todos$: Observable<Todo[]>;
 
+  show$: Observable<boolean>;
+  hide$: Observable<boolean>;
+  showReload$: Observable<boolean>;
+
   @HostBinding('class') cssClass = 'todo__app';
 
   constructor(private todosService: TodosService, private toolbelt: Toolbelt) {}
@@ -50,6 +56,12 @@ export class TodosComponent implements OnInit, OnDestroy {
     );
 
     this.todos$ = merge(this.initialTodos$, this.mostRecentTodos$);
+    this.show$ = this.reloadEvery5Seconds$.pipe(
+      skip(1),
+      mapTo(true)
+    );
+    this.hide$ = this.update$$.pipe(mapTo(false));
+    this.showReload$ = merge(this.show$, this.hide$);
   }
 
   ngOnDestroy(): void {
