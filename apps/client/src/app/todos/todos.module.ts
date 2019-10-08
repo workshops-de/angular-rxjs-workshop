@@ -11,6 +11,7 @@ import { TodoUpdaterComponent } from './todo-updater/todo-updater.component';
 import { TodoSettingsComponent } from './todo-settings/todo-settings.component';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { Toolbelt } from './shared/toolbelt.service';
+import { TodoSettings } from './shared/todo-settings.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,6 @@ import { Toolbelt } from './shared/toolbelt.service';
     MatSnackBarModule
   ],
   exports: [TodosComponent],
-  providers: [Toolbelt]
+  providers: [Toolbelt, TodoSettings]
 })
 export class TodosModule {}
