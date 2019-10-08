@@ -26,7 +26,7 @@ export class Toolbelt {
     }
   };
 
-  offerHardRelaod() {
+  offerHardReload() {
     const openDialog = this.snackbar.open(
       'Was not able loading todos',
       'Retry'
