@@ -15,6 +15,8 @@ import {
   withLatestFrom
 } from 'rxjs/operators';
 import { Toolbelt } from './shared/toolbelt.service';
+import { MatDialog } from '@angular/material';
+import { TodoSettingsComponent } from './todo-settings/todo-settings.component';
 
 @Component({
   selector: 'dos-todos',
@@ -46,7 +48,11 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') cssClass = 'todo__app';
 
-  constructor(private todosService: TodosService, private toolbelt: Toolbelt) {}
+  constructor(
+    private todosService: TodosService,
+    private toolbelt: Toolbelt,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.initialTodos$ = this.sourceTodos$.pipe(first());
@@ -72,5 +78,9 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.sink.add(
       this.todosService.completeOrIncomplete(todoForUpdate).subscribe()
     );
+  }
+
+  openSettings() {
+    this.dialog.open(TodoSettingsComponent);
   }
 }

@@ -8,6 +8,9 @@ import { TodosComponent } from './todos.component';
 import { TodosLinkNavigationComponent } from './todos-link-navigation/todos-link-navigation.component';
 import { TodosApiErrorComponent } from './todos-api-error/todos-api-error.component';
 import { TodoUpdaterComponent } from './todo-updater/todo-updater.component';
+import { TodoSettingsComponent } from './todo-settings/todo-settings.component';
+import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { Toolbelt } from './shared/toolbelt.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,17 @@ import { TodoUpdaterComponent } from './todo-updater/todo-updater.component';
     TodoCounterComponent,
     TodosLinkNavigationComponent,
     TodosApiErrorComponent,
-    TodoUpdaterComponent
+    TodoUpdaterComponent,
+    TodoSettingsComponent
   ],
-  imports: [CommonModule, TodosRoutingModule],
-  exports: [TodosComponent]
+  entryComponents: [TodoSettingsComponent],
+  imports: [
+    CommonModule,
+    TodosRoutingModule,
+    MatDialogModule,
+    MatSnackBarModule
+  ],
+  exports: [TodosComponent],
+  providers: [Toolbelt]
 })
 export class TodosModule {}

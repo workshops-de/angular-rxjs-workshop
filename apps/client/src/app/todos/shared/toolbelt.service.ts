@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Todo, TodoApi } from '../models';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class Toolbelt {
   constructor(private snackbar: MatSnackBar) {}
 
