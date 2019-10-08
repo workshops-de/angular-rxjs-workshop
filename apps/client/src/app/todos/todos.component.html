@@ -1,4 +1,5 @@
 <h1 class="todo__h1">todos</h1>
+<dos-todo-updater (reload)="update$$.next()"></dos-todo-updater>
 <ng-container *ngIf="todos$ | async as todos; else loadingIndicator">
   <dos-todo-counter
     [count]="todos.length"

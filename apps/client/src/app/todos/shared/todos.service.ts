@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo, TodoApi } from '../models';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { Toolbelt } from './toolbelt.service';
 
 const todosUrl = 'http://localhost:3333/api';
@@ -16,7 +16,10 @@ export class TodosService {
       this.http
         .get<TodoApi[]>(`${todosUrl}?query=${param ? param : 'all'}`)
         // Task apply mapping
-        .pipe(map(todos => todos.map(todo => Toolbelt.todo.deserialize(todo))))
+        .pipe(
+          map(todos => todos.map(todo => Toolbelt.todo.deserialize(todo))),
+          shareReplay(1)
+        )
     );
   }
 

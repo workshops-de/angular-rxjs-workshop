@@ -7,6 +7,7 @@ import { TodosRoutingModule } from './todos-routing.module';
 import { TodosComponent } from './todos.component';
 import { TodosLinkNavigationComponent } from './todos-link-navigation/todos-link-navigation.component';
 import { TodosApiErrorComponent } from './todos-api-error/todos-api-error.component';
+import { TodoUpdaterComponent } from './todo-updater/todo-updater.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TodosApiErrorComponent } from './todos-api-error/todos-api-error.compon
     TodosComponent,
     TodoCounterComponent,
     TodosLinkNavigationComponent,
-    TodosApiErrorComponent
+    TodosApiErrorComponent,
+    TodoUpdaterComponent
   ],
   imports: [CommonModule, TodosRoutingModule],
   exports: [TodosComponent]
