@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { EMPTY, Observable, timer } from 'rxjs';
 import { Todo, TodoApi } from '../models';
 import {
+  distinctUntilChanged,
   exhaustMap,
   filter,
   map,
@@ -27,6 +28,7 @@ export class TodoService {
 
   loadFrequently() {
     return this.settings.settings$.pipe(
+      distinctUntilChanged(),
       switchMap(settings => {
         if (settings.isPollingEnabled) {
           return timer(0, settings.pollingInterval).pipe(
