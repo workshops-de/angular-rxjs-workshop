@@ -27,16 +27,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   update$$ = new Subject();
 
-  reloadEvery5Seconds$ = timer(0, 5000);
-  sourceTodos$ = this.reloadEvery5Seconds$.pipe(
-    exhaustMap(() => this.todosService.query()),
-    retryWhen(errors =>
-      errors.pipe(switchMap(() => timer(1000).pipe(take(5))))
-    ),
-    tap({
-      error: () => this.toolbelt.offerHardReload()
-    })
-  );
+  sourceTodos$ = this.todosService.loadFrequently();
 
   initialTodos$: Observable<Todo[]>;
   mostRecentTodos$: Observable<Todo[]>;
@@ -48,11 +39,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') cssClass = 'todo__app';
 
-  constructor(
-    private todosService: TodosService,
-    private toolbelt: Toolbelt,
-    private dialog: MatDialog
-  ) {}
+  constructor(private todosService: TodosService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initialTodos$ = this.sourceTodos$.pipe(first());
@@ -62,7 +49,7 @@ export class TodosComponent implements OnInit, OnDestroy {
     );
 
     this.todos$ = merge(this.initialTodos$, this.mostRecentTodos$);
-    this.show$ = this.reloadEvery5Seconds$.pipe(
+    this.show$ = this.sourceTodos$.pipe(
       skip(1),
       mapTo(true)
     );

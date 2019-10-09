@@ -1,20 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { Todo, TodoApi } from '../models';
-import { map, shareReplay } from 'rxjs/operators';
+import {
+  exhaustMap,
+  map,
+  retryWhen,
+  shareReplay,
+  switchMap,
+  take,
+  tap
+} from 'rxjs/operators';
 import { Toolbelt } from './toolbelt.service';
 
 const todosUrl = 'http://localhost:3333/api';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class TodosService {
-  constructor(private http: HttpClient) {}
+  private interval$ = timer(0, 5000);
 
-  query(param?: string): Observable<Todo[]> {
+  constructor(private http: HttpClient, private toolbelt: Toolbelt) {}
+
+  loadFrequently() {
+    return this.interval$.pipe(
+      exhaustMap(() => this.query()),
+      retryWhen(errors =>
+        errors.pipe(switchMap(() => timer(1000).pipe(take(5))))
+      ),
+      tap({
+        error: () => this.toolbelt.offerHardReload()
+      })
+    );
+  }
+
+  query(): Observable<Todo[]> {
     return (
       this.http
-        .get<TodoApi[]>(`${todosUrl}?query=${param ? param : 'all'}`)
+        .get<TodoApi[]>(`${todosUrl}`)
         // Task apply mapping
         .pipe(
           map(todos => todos.map(todo => Toolbelt.todo.deserialize(todo))),
