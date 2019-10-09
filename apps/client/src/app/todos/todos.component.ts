@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { Todo } from './models';
-import { TodoService } from './shared/todo.service';
+import { TodoService } from './todo.service';
 import { first, map, mapTo, skip, withLatestFrom } from 'rxjs/operators';
 
 @Component({

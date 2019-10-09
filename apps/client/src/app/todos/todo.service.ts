@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, timer } from 'rxjs';
-import { Todo, TodoApi } from '../models';
+import { Todo, TodoApi } from './models';
 import {
   distinctUntilChanged,
   exhaustMap,
@@ -13,7 +13,7 @@ import {
   take,
   tap
 } from 'rxjs/operators';
-import { Toolbelt } from './toolbelt.service';
+import { Toolbelt } from './internals';
 import { TodoSettings } from './todo-settings.service';
 
 const todosUrl = 'http://localhost:3333/api';

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Todo } from '../models';
+import { Todo } from '../../../models';
 
 @Pipe({
   name: 'pinned'

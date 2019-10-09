@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Todo } from '../models';
+import { Todo } from '../../../models';
 
 @Component({
   selector: 'dos-todo-quick-add',

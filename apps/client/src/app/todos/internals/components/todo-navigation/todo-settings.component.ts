@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from '../models';
+import { Todo } from '../../../models';
 import {
   TodoSettings,
   TodoSettingsOptions
-} from '../shared/todo-settings.service';
+} from '../../../todo-settings.service';
 import { Observable } from 'rxjs';
 
 @Component({
