@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { merge, Observable, Subject, Subscription, timer } from 'rxjs';
 import { Todo } from './models';
-import { TodosService } from './shared/todos.service';
+import { TodoService } from './shared/todo.service';
 import {
   exhaustMap,
   first,
@@ -37,7 +37,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') cssClass = 'todo__app';
 
-  constructor(private todosService: TodosService, private dialog: MatDialog) {}
+  constructor(private todosService: TodoService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.todosInitial$ = this.todosSource$.pipe(first());

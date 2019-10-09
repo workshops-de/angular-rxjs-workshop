@@ -12,14 +12,19 @@ import {
   tap
 } from 'rxjs/operators';
 import { Toolbelt } from './toolbelt.service';
+import { TodoSettings } from './todo-settings.service';
 
 const todosUrl = 'http://localhost:3333/api';
 
 @Injectable()
-export class TodosService {
+export class TodoService {
   private interval$ = timer(0, 5000);
 
-  constructor(private http: HttpClient, private toolbelt: Toolbelt) {}
+  constructor(
+    private http: HttpClient,
+    private toolbelt: Toolbelt,
+    private settings: TodoSettings
+  ) {}
 
   loadFrequently() {
     return this.interval$.pipe(
