@@ -29,7 +29,7 @@ export class TodoService {
     return this.settings.settings$.pipe(
       switchMap(settings => {
         if (settings.isPollingEnabled) {
-          return timer(0, 5000).pipe(
+          return timer(0, settings.pollingInterval).pipe(
             exhaustMap(() => this.query()),
             retryWhen(errors =>
               errors.pipe(switchMap(() => timer(1000).pipe(take(5))))

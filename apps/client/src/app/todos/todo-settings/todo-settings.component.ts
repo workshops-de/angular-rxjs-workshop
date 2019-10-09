@@ -9,8 +9,17 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'dos-todo-settings',
   template: `
-    <h2 class="mat-h2">Settings</h2>
-    <ng-container *ngIf="settings$ | async as settings">
+    <h2 mat-dialog-title>Settings</h2>
+    <mat-dialog-content *ngIf="settings$ | async as settings">
+      <input
+        #todoTextInput
+        type="number"
+        class="todo__input"
+        placeholder="What needs to be done?"
+        [value]="settings.pollingInterval"
+        (change)="updateInterval($event)"
+      />
+
       <div class="todo">
         <label class="todo__label"
           >Enable Polling
@@ -22,10 +31,16 @@ import { Observable } from 'rxjs';
           <span class="todo__checkmark"></span>
         </label>
       </div>
-    </ng-container>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <button mat-dialog-close="" class="todo__button--primary">
+        CLOSE
+      </button>
+    </mat-dialog-actions>
   `
 })
-export class TodoSettingsComponent implements OnInit {
+export class TodoSettingsComponent {
   settings$: Observable<Partial<TodoSettingsOptions>>;
 
   constructor(private todoSettings: TodoSettings) {
@@ -36,5 +51,7 @@ export class TodoSettingsComponent implements OnInit {
     this.todoSettings.update({ isPollingEnabled: event.target.checked });
   }
 
-  ngOnInit() {}
+  updateInterval(event: Event & { target: { value: string } }) {
+    this.todoSettings.update({ pollingInterval: +event.target.value });
+  }
 }
