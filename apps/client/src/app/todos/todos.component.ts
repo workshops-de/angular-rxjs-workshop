@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { merge, Observable, Subject, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { merge, Observable, Subject } from 'rxjs';
 import { Todo } from './models';
 import { TodoService } from './todo.service';
 import { first, map, mapTo, skip, withLatestFrom } from 'rxjs/operators';
@@ -8,9 +8,7 @@ import { first, map, mapTo, skip, withLatestFrom } from 'rxjs/operators';
   selector: 'dos-todos',
   templateUrl: './todos.component.html'
 })
-export class TodosComponent implements OnInit, OnDestroy {
-  private sink = new Subscription();
-
+export class TodosComponent implements OnInit {
   todos$: Observable<Todo[]>;
   todosSource$ = this.todosService.loadFrequently();
   todosInitial$: Observable<Todo[]>;
@@ -39,13 +37,14 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.showReload$ = merge(this.show$, this.hide$);
   }
 
-  ngOnDestroy(): void {
-    this.sink.unsubscribe();
-  }
-
   completeOrIncompleteTodo(todoForUpdate: Todo) {
-    this.sink.add(
-      this.todosService.completeOrIncomplete(todoForUpdate).subscribe()
-    );
+    /*
+     * Note in order to keep the code clean for the workshop we did not
+     * handle the following subscription.
+     * Normally you want to unsubscribe.
+     *
+     * We just want to focus you on RxJS.
+     */
+    this.todosService.completeOrIncomplete(todoForUpdate).subscribe();
   }
 }
