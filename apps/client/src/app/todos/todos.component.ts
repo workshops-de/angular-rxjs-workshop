@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { merge, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Todo } from './models';
 import { TodoService } from './todo.service';
-import { first, map, mapTo, skip, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'dos-todos',
@@ -22,19 +21,10 @@ export class TodosComponent implements OnInit {
   constructor(private todosService: TodoService) {}
 
   ngOnInit(): void {
-    this.todosInitial$ = this.todosSource$.pipe(first());
-    this.todosMostRecent$ = this.update$$.pipe(
-      withLatestFrom(this.todosSource$),
-      map(([, todos]) => todos)
-    );
+    // TODO: Control update of todos in App (back pressure)
+    this.todos$ = this.todosService.loadFrequently();
 
-    this.todos$ = merge(this.todosInitial$, this.todosMostRecent$);
-    this.show$ = this.todosSource$.pipe(
-      skip(1),
-      mapTo(true)
-    );
-    this.hide$ = this.update$$.pipe(mapTo(false));
-    this.showReload$ = merge(this.show$, this.hide$);
+    // TODO: Control display of refresh button
   }
 
   completeOrIncompleteTodo(todoForUpdate: Todo) {

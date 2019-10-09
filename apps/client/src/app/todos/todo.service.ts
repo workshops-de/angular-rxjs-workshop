@@ -27,23 +27,9 @@ export class TodoService {
   ) {}
 
   loadFrequently() {
-    return this.settings.settings$.pipe(
-      distinctUntilChanged(),
-      switchMap(settings => {
-        if (settings.isPollingEnabled) {
-          return timer(0, settings.pollingInterval).pipe(
-            exhaustMap(() => this.query()),
-            retryWhen(errors =>
-              errors.pipe(switchMap(() => timer(1000).pipe(take(5))))
-            ),
-            tap({
-              error: () => this.toolbelt.offerHardReload()
-            })
-          );
-        }
-        return EMPTY;
-      }),
-      shareReplay(1)
+    // TODO: Introduce error handled, configured, recurring, all-mighty stream
+    return this.query().pipe(
+      tap({ error: () => this.toolbelt.offerHardReload() })
     );
   }
 
@@ -51,7 +37,7 @@ export class TodoService {
     return (
       this.http
         .get<TodoApi[]>(`${todosUrl}`)
-        // Task apply mapping
+        // TODO: apply mapping to fix display of tasks
         .pipe(map(todos => todos.map(todo => this.toolbelt.deserialize(todo))))
     );
   }
