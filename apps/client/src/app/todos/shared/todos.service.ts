@@ -34,7 +34,7 @@ export class TodosService {
     );
   }
 
-  query(): Observable<Todo[]> {
+  private query(): Observable<Todo[]> {
     return (
       this.http
         .get<TodoApi[]>(`${todosUrl}`)
