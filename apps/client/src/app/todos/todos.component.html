@@ -1,22 +1,25 @@
-<h1 class="todo__h1">todos</h1>
-<button (click)="openSettings()">SETTINGS</button>
+<dos-todo-navigation></dos-todo-navigation>
 <dos-todo-updater
-  *ngIf="showReload$ | async"
+  [isShown]="showReload$ | async"
   (reload)="update$$.next()"
 ></dos-todo-updater>
-<ng-container *ngIf="todos$ | async as todos; else loadingIndicator">
-  <dos-todo-counter
-    [count]="todos.length"
-    class="todo__component--spaced"
-  ></dos-todo-counter>
-  <dos-todo-checker
-    [todo]="todo"
-    (toggle)="completeOrIncompleteTodo($event)"
-    (remove)="removeTodo($event)"
-    *ngFor="let todo of todos"
-  ></dos-todo-checker>
-</ng-container>
+<main class="todo__app">
+  <ng-container *ngIf="todos$ | async as todos; else loadingIndicator">
+    <dos-todo-counter
+      [count]="todos.length"
+      class="todo__component--spaced"
+    ></dos-todo-counter>
+    <dos-todo-checker
+      [todo]="todo"
+      (toggle)="completeOrIncompleteTodo($event)"
+      (remove)="removeTodo($event)"
+      *ngFor="let todo of todos"
+    ></dos-todo-checker>
+  </ng-container>
 
-<ng-template #loadingIndicator>
-  <div *ngIf="!isErrorShown">Get todos ready for you...</div>
-</ng-template>
+  <ng-template #loadingIndicator>
+    <div *ngIf="!isErrorShown" style="padding: 8px">
+      Get todos ready for you...
+    </div>
+  </ng-template>
+</main>

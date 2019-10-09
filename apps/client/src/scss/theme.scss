@@ -5,6 +5,8 @@
 @import './todos/todo-link-navigation';
 @import './todos/todo-typography';
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 body {
   font-family: 'Roboto', sans-serif;
 }

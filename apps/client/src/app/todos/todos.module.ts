@@ -8,11 +8,19 @@ import { TodosComponent } from './todos.component';
 import { TodosLinkNavigationComponent } from './todos-link-navigation/todos-link-navigation.component';
 import { TodosApiErrorComponent } from './todos-api-error/todos-api-error.component';
 import { TodoUpdaterComponent } from './todo-updater/todo-updater.component';
-import { TodoSettingsComponent } from './todo-settings/todo-settings.component';
-import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { TodoSettingsComponent } from './todo-navigation/todo-settings.component';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatIconModule,
+  MatListModule,
+  MatSnackBarModule,
+  MatToolbarModule
+} from '@angular/material';
 import { Toolbelt } from './shared/toolbelt.service';
 import { TodoSettings } from './shared/todo-settings.service';
 import { TodoService } from './shared/todo.service';
+import { TodoNavigationComponent } from './todo-navigation/todo-navigation.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +31,19 @@ import { TodoService } from './shared/todo.service';
     TodosLinkNavigationComponent,
     TodosApiErrorComponent,
     TodoUpdaterComponent,
-    TodoSettingsComponent
+    TodoSettingsComponent,
+    TodoNavigationComponent
   ],
   entryComponents: [TodoSettingsComponent],
   imports: [
     CommonModule,
     TodosRoutingModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule
   ],
   exports: [TodosComponent],
   providers: [Toolbelt, TodoSettings, TodoService]

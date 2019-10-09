@@ -1,22 +1,8 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { merge, Observable, Subject, Subscription, timer } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { Todo } from './models';
 import { TodoService } from './shared/todo.service';
-import {
-  exhaustMap,
-  first,
-  map,
-  mapTo,
-  retryWhen,
-  skip,
-  switchMap,
-  take,
-  tap,
-  withLatestFrom
-} from 'rxjs/operators';
-import { Toolbelt } from './shared/toolbelt.service';
-import { MatDialog } from '@angular/material';
-import { TodoSettingsComponent } from './todo-settings/todo-settings.component';
+import { first, map, mapTo, skip, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'dos-todos',
@@ -35,9 +21,7 @@ export class TodosComponent implements OnInit, OnDestroy {
   hide$: Observable<boolean>;
   showReload$: Observable<boolean>;
 
-  @HostBinding('class') cssClass = 'todo__app';
-
-  constructor(private todosService: TodoService, private dialog: MatDialog) {}
+  constructor(private todosService: TodoService) {}
 
   ngOnInit(): void {
     this.todosInitial$ = this.todosSource$.pipe(first());
@@ -63,9 +47,5 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.sink.add(
       this.todosService.completeOrIncomplete(todoForUpdate).subscribe()
     );
-  }
-
-  openSettings() {
-    this.dialog.open(TodoSettingsComponent);
   }
 }
