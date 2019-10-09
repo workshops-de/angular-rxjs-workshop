@@ -25,14 +25,12 @@ import { TodoSettingsComponent } from './todo-settings/todo-settings.component';
 export class TodosComponent implements OnInit, OnDestroy {
   private sink = new Subscription();
 
-  update$$ = new Subject();
-
-  sourceTodos$ = this.todosService.loadFrequently();
-
-  initialTodos$: Observable<Todo[]>;
-  mostRecentTodos$: Observable<Todo[]>;
   todos$: Observable<Todo[]>;
+  todosSource$ = this.todosService.loadFrequently();
+  todosInitial$: Observable<Todo[]>;
+  todosMostRecent$: Observable<Todo[]>;
 
+  update$$ = new Subject();
   show$: Observable<boolean>;
   hide$: Observable<boolean>;
   showReload$: Observable<boolean>;
@@ -42,14 +40,14 @@ export class TodosComponent implements OnInit, OnDestroy {
   constructor(private todosService: TodosService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.initialTodos$ = this.sourceTodos$.pipe(first());
-    this.mostRecentTodos$ = this.update$$.pipe(
-      withLatestFrom(this.sourceTodos$),
+    this.todosInitial$ = this.todosSource$.pipe(first());
+    this.todosMostRecent$ = this.update$$.pipe(
+      withLatestFrom(this.todosSource$),
       map(([, todos]) => todos)
     );
 
-    this.todos$ = merge(this.initialTodos$, this.mostRecentTodos$);
-    this.show$ = this.sourceTodos$.pipe(
+    this.todos$ = merge(this.todosInitial$, this.todosMostRecent$);
+    this.show$ = this.todosSource$.pipe(
       skip(1),
       mapTo(true)
     );

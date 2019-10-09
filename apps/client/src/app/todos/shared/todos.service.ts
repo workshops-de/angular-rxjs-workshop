@@ -52,7 +52,7 @@ export class TodosService {
   remove(todoForRemoval: TodoApi): Observable<Todo> {
     return this.http
       .delete<TodoApi>(`${todosUrl}/${todoForRemoval.id}`)
-      .pipe(map(todo => Toolbelt.todo.deserialize(todo)));
+      .pipe(map(todo => this.toolbelt.deserialize(todo)));
   }
 
   completeOrIncomplete(todoForUpdate: Todo): Observable<Todo> {
@@ -60,9 +60,9 @@ export class TodosService {
     return this.http
       .put<TodoApi>(
         `${todosUrl}/${todoForUpdate.id}`,
-        Toolbelt.todo.serialize(updatedTodo)
+        this.toolbelt.serialize(updatedTodo)
       )
-      .pipe(map(todo => Toolbelt.todo.deserialize(todo)));
+      .pipe(map(todo => this.toolbelt.deserialize(todo)));
   }
 
   private toggleTodoState(todoForUpdate: Todo): any {
