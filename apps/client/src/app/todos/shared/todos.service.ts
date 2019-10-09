@@ -29,7 +29,8 @@ export class TodosService {
       ),
       tap({
         error: () => this.toolbelt.offerHardReload()
-      })
+      }),
+      shareReplay(1)
     );
   }
 
@@ -38,10 +39,7 @@ export class TodosService {
       this.http
         .get<TodoApi[]>(`${todosUrl}`)
         // Task apply mapping
-        .pipe(
-          map(todos => todos.map(todo => Toolbelt.todo.deserialize(todo))),
-          shareReplay(1)
-        )
+        .pipe(map(todos => todos.map(todo => this.toolbelt.deserialize(todo))))
     );
   }
 
