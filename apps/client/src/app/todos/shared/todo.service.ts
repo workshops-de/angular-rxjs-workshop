@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, timer } from 'rxjs';
+import { EMPTY, Observable, timer } from 'rxjs';
 import { Todo, TodoApi } from '../models';
 import {
   exhaustMap,
+  filter,
   map,
   retryWhen,
   shareReplay,
@@ -18,8 +19,6 @@ const todosUrl = 'http://localhost:3333/api';
 
 @Injectable()
 export class TodoService {
-  private interval$ = timer(0, 5000);
-
   constructor(
     private http: HttpClient,
     private toolbelt: Toolbelt,
@@ -27,13 +26,20 @@ export class TodoService {
   ) {}
 
   loadFrequently() {
-    return this.interval$.pipe(
-      exhaustMap(() => this.query()),
-      retryWhen(errors =>
-        errors.pipe(switchMap(() => timer(1000).pipe(take(5))))
-      ),
-      tap({
-        error: () => this.toolbelt.offerHardReload()
+    return this.settings.settings$.pipe(
+      switchMap(settings => {
+        if (settings.isPollingEnabled) {
+          return timer(0, 5000).pipe(
+            exhaustMap(() => this.query()),
+            retryWhen(errors =>
+              errors.pipe(switchMap(() => timer(1000).pipe(take(5))))
+            ),
+            tap({
+              error: () => this.toolbelt.offerHardReload()
+            })
+          );
+        }
+        return EMPTY;
       }),
       shareReplay(1)
     );
