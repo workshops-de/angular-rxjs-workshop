@@ -21,6 +21,8 @@ import { Toolbelt } from './shared/toolbelt.service';
 import { TodoSettings } from './shared/todo-settings.service';
 import { TodoService } from './shared/todo.service';
 import { TodoNavigationComponent } from './todo-navigation/todo-navigation.component';
+import { TodosPinnedComponent } from './todos-pinned/todos-pinned.component';
+import { PinnedPipe } from './todos-pinned/pinned.pipe';
 
 @NgModule({
   declarations: [
@@ -32,18 +34,20 @@ import { TodoNavigationComponent } from './todo-navigation/todo-navigation.compo
     TodosApiErrorComponent,
     TodoUpdaterComponent,
     TodoSettingsComponent,
-    TodoNavigationComponent
+    TodoNavigationComponent,
+    TodosPinnedComponent,
+    PinnedPipe
   ],
   entryComponents: [TodoSettingsComponent],
   imports: [
     CommonModule,
     TodosRoutingModule,
+    MatButtonModule,
     MatDialogModule,
-    MatSnackBarModule,
-    MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
+    MatSnackBarModule,
+    MatToolbarModule
   ],
   exports: [TodosComponent],
   providers: [Toolbelt, TodoSettings, TodoService]

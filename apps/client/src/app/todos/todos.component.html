@@ -17,6 +17,8 @@
     ></dos-todo-checker>
   </ng-container>
 
+  <dos-todos-pinned [todos]="todos$ | async"></dos-todos-pinned>
+
   <ng-template #loadingIndicator>
     <div *ngIf="!isErrorShown" style="padding: 8px">
       Get todos ready for you...
