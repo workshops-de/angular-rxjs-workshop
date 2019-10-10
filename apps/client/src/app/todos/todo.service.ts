@@ -2,10 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo, TodoApi } from './models';
-import {
-  map,
-  tap
-} from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Toolbelt } from './internals';
 import { TodoSettings } from './todo-settings.service';
 

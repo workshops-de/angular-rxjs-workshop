@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Todo } from './models';
 import { TodoService } from './todo.service';
 
@@ -16,7 +16,7 @@ export class TodosComponent implements OnInit {
   update$$ = new Subject();
   show$: Observable<boolean>;
   hide$: Observable<boolean>;
-  showReload$: Observable<boolean>;
+  showReload$: Observable<boolean> = of(true);
 
   constructor(private todosService: TodoService) {}
 
