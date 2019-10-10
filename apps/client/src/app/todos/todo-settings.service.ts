@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { scan } from 'rxjs/operators';
+import { scan, shareReplay } from 'rxjs/operators';
 
 export interface TodoSettingsOptions {
   isPollingEnabled: boolean;
@@ -15,8 +15,8 @@ export class TodoSettings {
   });
 
   settings$ = this.settings$$.pipe(
-    scan((prev, next) => ({ ...prev, ...next }))
-    // TODO ensure that most recent state is sent to subscriber.
+    scan((prev, next) => ({ ...prev, ...next })),
+    shareReplay(1)
   );
 
   update(updates: Partial<TodoSettingsOptions>) {
