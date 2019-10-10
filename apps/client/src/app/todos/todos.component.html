@@ -12,7 +12,6 @@
     <dos-todo-checker
       [todo]="todo"
       (toggle)="completeOrIncompleteTodo($event)"
-      (remove)="removeTodo($event)"
       *ngFor="let todo of todos"
     ></dos-todo-checker>
   </ng-container>
