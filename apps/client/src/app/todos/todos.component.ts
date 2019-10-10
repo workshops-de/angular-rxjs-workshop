@@ -22,7 +22,7 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO: Control update of todos in App (back pressure)
-    this.todos$ = this.todosService.loadFrequently();
+    this.todos$ = this.todosSource$;
 
     // TODO: Control display of refresh button
   }
