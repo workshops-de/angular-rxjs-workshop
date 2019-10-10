@@ -1,16 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, timer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Todo, TodoApi } from './models';
 import {
-  distinctUntilChanged,
-  exhaustMap,
-  filter,
   map,
-  retryWhen,
-  shareReplay,
-  switchMap,
-  take,
   tap
 } from 'rxjs/operators';
 import { Toolbelt } from './internals';
