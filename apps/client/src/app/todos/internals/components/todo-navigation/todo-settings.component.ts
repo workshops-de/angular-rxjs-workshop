@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
         placeholder="What needs to be done?"
         [value]="settings.pollingInterval"
         (change)="updateInterval($event)"
+        (keyup)="updateIntervalOnEnter($event)"
       />
 
       <div class="todo">
@@ -53,5 +54,10 @@ export class TodoSettingsComponent {
 
   updateInterval(event: Event & { target: { value: string } }) {
     this.todoSettings.update({ pollingInterval: +event.target.value });
+  }
+  updateIntervalOnEnter(event: KeyboardEvent & { target: { value: string } }) {
+    if (event.keyCode === 13) {
+      this.todoSettings.update({ pollingInterval: +event.target.value });
+    }
   }
 }
