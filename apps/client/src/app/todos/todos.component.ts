@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { merge, Observable, of, Subject } from 'rxjs';
-import { first, map, withLatestFrom } from 'rxjs/operators';
+import { first, map, mapTo, skip, withLatestFrom } from 'rxjs/operators';
 import { Todo } from './models';
 import { TodoService } from './todo.service';
 import { TodosPinnedComponent } from './internals/components/todos-pinned/todos-pinned.component';
@@ -36,17 +36,26 @@ export class TodosComponent implements OnInit {
   showReload$: Observable<boolean> = of(true);
 
   ngOnInit(): void {
+    this.initializeTodos();
+    this.showReloadOnUpdates();
+  }
+
+  private initializeTodos() {
     this.todosInitial$ = this.todosSource$.pipe(first());
     this.todos$ = this.todosSource$;
-
     this.todosMostRecent$ = this.update$$.pipe(
       withLatestFrom(this.todosSource$),
       map(([, todos]) => todos)
     );
 
     this.todos$ = merge(this.todosInitial$, this.todosMostRecent$);
+  }
 
-    // TODO: Control display of refresh button
+  private showReloadOnUpdates() {
+    this.show$ = this.todosSource$.pipe(skip(1), mapTo(true));
+    this.hide$ = this.update$$.pipe(mapTo(false));
+
+    this.showReload$ = merge(this.show$, this.hide$);
   }
 
   completeOrIncompleteTodo(todoForUpdate: Todo) {
