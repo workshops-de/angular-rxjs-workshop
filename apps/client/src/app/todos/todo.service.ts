@@ -16,17 +16,17 @@ export class TodoService {
     private settings: TodoSettings
   ) {}
 
-  loadFrequently() {
+  loadFrequently(): Observable<Todo[]> {
     // TODO: Introduce error handled, configured, recurring, all-mighty stream
     return this.query().pipe(
       tap({ error: () => this.toolbelt.offerHardReload() })
     );
   }
 
-  // TODO: Fix the return type of this method
-  private query(): Observable<any> {
-    return this.http.get<TodoApi[]>(`${todosUrl}`);
-    // TODO: Apply mapping to fix display of tasks
+  private query(): Observable<Todo[]> {
+    return this.http
+      .get<TodoApi[]>(`${todosUrl}`)
+      .pipe(map((todos) => todos.map((todo) => this.toolbelt.toTodo(todo))));
   }
 
   create(todo: Todo): Observable<TodoApi> {
