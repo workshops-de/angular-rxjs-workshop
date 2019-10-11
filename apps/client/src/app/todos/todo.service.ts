@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, timer } from 'rxjs';
-import { delay, exhaustMap, map, retryWhen, share } from 'rxjs/operators';
+import {
+  delay,
+  exhaustMap,
+  map,
+  retryWhen,
+  share,
+  switchMap
+} from 'rxjs/operators';
 import { Toolbelt } from './internals';
 import { Todo, TodoApi } from './models';
 import { TodoSettings } from './todo-settings.service';
@@ -18,8 +25,14 @@ export class TodoService {
 
   loadFrequently(): Observable<Todo[]> {
     // TODO: Introduce error handled, configured, recurring, all-mighty stream
-    return timer(0, 5000).pipe(
-      exhaustMap(() => this.query()),
+    return this.settings.settings$.pipe(
+      switchMap((settings) =>
+        settings.isPollingEnabled
+          ? timer(0, settings.pollingInterval || 1_000).pipe(
+              exhaustMap(() => this.query())
+            )
+          : this.query()
+      ),
       retryWhen((errors) => errors.pipe(delay(1000))),
       share()
     );
