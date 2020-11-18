@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TodoQuickAddComponent } from './todo-quick-add.component';
 
@@ -6,7 +6,7 @@ describe('TodoQuickAddComponent', () => {
   let component: TodoQuickAddComponent;
   let fixture: ComponentFixture<TodoQuickAddComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TodoQuickAddComponent ]
     })
