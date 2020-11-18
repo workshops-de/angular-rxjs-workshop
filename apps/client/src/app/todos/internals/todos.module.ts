@@ -9,14 +9,12 @@ import { TodosLinkNavigationComponent } from './components/todos-link-navigation
 import { TodosApiErrorComponent } from './components/todos-api-error/todos-api-error.component';
 import { TodoUpdaterComponent } from './components/todo-updater/todo-updater.component';
 import { TodoSettingsComponent } from './components/todo-navigation/todo-settings.component';
-import {
-  MatButtonModule,
-  MatDialogModule,
-  MatIconModule,
-  MatListModule,
-  MatSnackBarModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Toolbelt } from './toolbelt.service';
 import { TodoSettings } from '../todo-settings.service';
 import { TodoService } from '../todo.service';

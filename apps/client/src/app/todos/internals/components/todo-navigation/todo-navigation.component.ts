@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TodoSettingsComponent } from './todo-settings.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'dos-todo-navigation',
