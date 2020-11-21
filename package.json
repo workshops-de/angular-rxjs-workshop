@@ -1,7 +1,13 @@
 {
-  "name": "rxjs-dos",
-  "version": "0.0.0",
+  "name": "reactive-thinking-rxjs",
+  "author": {
+    "name": "Gregor Woiwode",
+    "email": "gregor.woiwode@co-IT.eu",
+    "url": "https://twitter.com/GregOnNet"
+  },
+  "version": "1.0.0",
   "license": "MIT",
+  "private": "true",
   "scripts": {
     "ng": "nx",
     "nx": "nx",
@@ -31,7 +37,6 @@
     "help": "nx help",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "11.0.0",
     "@angular/cdk": "~11.0.0",
