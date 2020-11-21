@@ -6,19 +6,19 @@ import { Todo, TodoApi } from '../models';
 export class Toolbelt {
   constructor(private snackbar: MatSnackBar) {}
 
-  serialize(todo: Todo): TodoApi {
+  toTodoApi(todo: Todo): TodoApi {
     const mappedTodo = {
       ...todo,
-      isComplete: todo.isDone
+      isComplete: todo.isDone,
     };
     delete mappedTodo.isDone;
     return mappedTodo;
   }
 
-  deserialize(todoApi: TodoApi): Todo {
+  toTodo(todoApi: TodoApi): Todo {
     const mappedTodo = {
       ...todoApi,
-      isDone: todoApi.isComplete
+      isDone: todoApi.isComplete,
     };
     delete mappedTodo.isComplete;
     return mappedTodo;
