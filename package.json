@@ -11,7 +11,7 @@
   "scripts": {
     "ng": "nx",
     "nx": "nx",
-    "start": "ng serve",
+    "start": "nx run-many --target=serve --projects=client,api --parallel",
     "serve:be": "ng serve --project api",
     "serve:cl": "ng serve --project client",
     "serve:pl": "nodemon --config apps/playground/nodemon.json",
