@@ -49,10 +49,8 @@ export class TodoService {
       .pipe(map((todo) => this.toolbelt.toTodo(todo)));
   }
 
-  private toggleTodoState(todoForUpdate: Todo): any {
-    return {
-      ...todoForUpdate,
-      isDone: todoForUpdate.isDone ? false : true,
-    };
+  private toggleTodoState(todoForUpdate: Todo): Todo {
+    todoForUpdate.isDone = todoForUpdate.isDone ? false : true;
+    return todoForUpdate;
   }
 }
