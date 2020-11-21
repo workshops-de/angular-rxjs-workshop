@@ -1,15 +1,21 @@
 # Developer Open Space 2019 - RxJs Workshop
 
-# Prerequisites
+## Prerequisites
 
 - Chrome or Firefox
-- [Node 10](https://nodejs.org/) or higher
+- [Node LTS](https://nodejs.org/) or higher
 - [Visual Studio Code](https://code.visualstudio.com/), [WebStorm](https://www.jetbrains.com/webstorm/) or your preferred TypeScript IDE.
+
+## Course Instructions
+
+You will find all resources and task for this course in the [Wiki](https://github.com/ng-practice/reactive-thinking-in-rxjs/wiki).
 
 ## Setup
 
+Fork [this](https://github.com/ng-practice/reactive-thinking-in-rxjs.git) repository in GitHub or clone it with your Git client.
+
 ```bash
-git clone https://github.com/ng-practice/rxjs-dos-19.git dos
+git clone https://github.com/ng-practice/reactive-thinking-in-rxjs.git
 cd dos
 npm install
 ```
@@ -20,20 +26,18 @@ npm install
 
 ```bash
 # Open in own terminal session
-npm run serve:pl
+npm run start:playground
 
 ```
 
-### Client
+### Client & API
+
+Starting the project will start an Angular application and a NestJS Backend.
 
 ```bash
 # Open in own terminal session
-npm run serve:cl
-```
+npm start
 
-### API
-
-```bash
-# Open in own terminal session
-npm run serve:be
+# Angular Application: http://localhost:4200
+# NestJS Backend: http://localhost:3000
 ```
