@@ -16,7 +16,7 @@ Fork [this](https://github.com/ng-practice/reactive-thinking-in-rxjs.git) reposi
 
 ```bash
 git clone https://github.com/ng-practice/reactive-thinking-in-rxjs.git
-cd dos
+cd reactive-thinking-in-rxjs
 npm install
 ```
 
