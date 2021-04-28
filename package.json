@@ -12,7 +12,7 @@
     "ng": "nx",
     "nx": "nx",
     "start": "nx run-many --target=serve --projects=client,api --parallel",
-    "start: client": "ng serve --project client",
+    "start:client": "ng serve --project client",
     "start:api": "ng serve --project api",
     "start:playground": "nodemon --config apps/playground/nodemon.json",
     "test": "ng test",
@@ -37,7 +37,7 @@
     "core-js": "2.5.4",
     "faker": "4.1.0",
     "reflect-metadata": "0.1.13",
-    "rxjs": "6.6.3",
+    "rxjs": "7.0.0-rc.3",
     "typeface-roboto": "0.0.75",
     "zone.js": "0.10.3"
   },
