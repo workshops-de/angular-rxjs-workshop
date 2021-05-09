@@ -1,8 +1,9 @@
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 
 // playground1();
-//playground2();
-playground3();
+// playground2();
+// playground3();
+playground4();
 
 function playground1() {
   const stream$ = new Observable((observer) => {
@@ -50,4 +51,11 @@ function playground3() {
   });
 
   setTimeout(() => subscription.unsubscribe(), 5000);
+}
+function playground4() {
+  const subscription = timer(5000, 2000).subscribe({
+    next: (tick) => console.log(`next: ${tick}`)
+  });
+
+  setTimeout(() => subscription.unsubscribe(), 10000);
 }
