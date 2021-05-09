@@ -1,7 +1,8 @@
 import { Observable } from 'rxjs';
 
 // playground1();
-playground2();
+//playground2();
+playground3();
 
 function playground1() {
   const stream$ = new Observable((observer) => {
@@ -30,4 +31,23 @@ function playground2() {
     next: (value) => console.log(value),
     complete: () => console.log('Stream is complete! 😎')
   });
+}
+function playground3() {
+  const stream$ = new Observable((observer) => {
+    let count = 0;
+
+    const intervalHandle = setInterval(
+      () => observer.next(`next: ${++count}`),
+      1000
+    );
+
+    return () => clearInterval(intervalHandle);
+  });
+
+  const subscription = stream$.subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log('Stream is complete! 😎')
+  });
+
+  setTimeout(() => subscription.unsubscribe(), 5000);
 }
