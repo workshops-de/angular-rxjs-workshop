@@ -19,5 +19,8 @@
       "@rxjs-dos/api-interfaces": ["libs/api-interfaces/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "angularCompilerOptions": {
+    "disableTypeScriptVersionCheck": true
+  }
 }
