@@ -8,13 +8,13 @@
     "tsconfig.base.json": "*"
   },
   "projects": {
-    "client": {
-      "tags": []
-    },
     "api": {
       "tags": []
     },
     "api-interfaces": {
+      "tags": []
+    },
+    "client": {
       "tags": []
     }
   },
@@ -28,5 +28,13 @@
   },
   "affected": {
     "defaultBase": "master"
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
