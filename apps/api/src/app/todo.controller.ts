@@ -1,3 +1,4 @@
+import { InMemoryDBService } from '@nestjs-addons/in-memory-db';
 import {
   Body,
   Controller,
@@ -6,9 +7,8 @@ import {
   HttpStatus,
   Put
 } from '@nestjs/common';
-import { InMemoryDBService } from '@nestjs-addons/in-memory-db';
-import { Todo } from './todo';
 import * as faker from 'faker';
+import { Todo } from './todo';
 
 @Controller()
 export class TodoController {
@@ -36,19 +36,19 @@ export class TodoController {
 
   private initializeFakeData() {
     this.todosInMemory.create({
-      id: 1,
+      id: '1',
       text: 'Buy 🥛',
       isComplete: true,
       isPinned: true
     });
     this.todosInMemory.create({
-      id: 2,
+      id: '2',
       text: 'Go 🏃‍♀️',
       isComplete: false,
       isPinned: false
     });
     this.todosInMemory.create({
-      id: 3,
+      id: '3',
       text: 'Build 🏡️',
       isComplete: true,
       isPinned: false
@@ -70,15 +70,15 @@ export class TodoController {
   private takeABreak(): Promise<void> {
     const between1To3Seconds = faker.random.number({ min: 1000, max: 3000 });
 
-    return new Promise(resolve =>
+    return new Promise((resolve) =>
       setTimeout(() => resolve(), between1To3Seconds)
     );
   }
 
   private changeFakeData() {
-    [4, 5, 6, 7].forEach(id =>
+    [4, 5, 6, 7].forEach((id) =>
       this.todosInMemory.update({
-        id,
+        id: `${id}`,
         text: `⏱ ${faker.random.arrayElement([
           'make ⛱',
           'read 📚',
