@@ -11,7 +11,7 @@ export interface TodoSettingsOptions {
 export class TodoSettings {
   private settings$$ = new BehaviorSubject<Partial<TodoSettingsOptions>>({
     isPollingEnabled: true,
-    pollingInterval: 5000
+    pollingInterval: 5400
   });
 
   settings$ = this.settings$$.pipe(

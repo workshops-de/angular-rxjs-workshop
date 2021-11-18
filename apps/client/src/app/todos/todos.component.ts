@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {
   first,
   map,
+  mapTo,
   merge,
   Observable,
   of,
+  skip,
   Subject,
   switchMap,
   tap,
@@ -60,6 +62,10 @@ export class TodosComponent implements OnInit {
     // setInterval(() => this.todosService.loadFrequently().subscribe(), 1500);
 
     // TODO: Control display of refresh button
+
+    this.show$ = this.todosSource$.pipe(skip(1), mapTo(true));
+    this.hide$ = this.update$$.pipe(mapTo(false));
+    this.showReload$ = merge(this.show$, this.hide$);
   }
 
   completeOrIncompleteTodo(todoForUpdate: Todo) {

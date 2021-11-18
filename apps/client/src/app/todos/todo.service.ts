@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, interval, timer, of } from 'rxjs';
 import {
   delay,
+  distinctUntilChanged,
   exhaustMap,
   map,
   mergeMap,
@@ -29,6 +30,23 @@ export class TodoService {
   ) {}
 
   loadFrequently(): Observable<Todo[]> {
+    return this.settings.settings$.pipe(
+      distinctUntilChanged(),
+      tap(console.log),
+      switchMap((options) => {
+        if (options.isPollingEnabled) {
+          return timer(1, options.pollingInterval).pipe(
+            switchMapTo(this.query())
+          );
+        } else {
+          return this.query();
+        }
+      }),
+      retryWhen((err) => err.pipe(delay(1000))),
+      tap(console.log),
+      share(),
+      tap({ error: () => this.toolbelt.offerHardReload() })
+    );
     // TODO: Introduce error handled, configured, recurring, all-mighty stream
     return timer(1, 3000).pipe(
       switchMapTo(this.query()),
