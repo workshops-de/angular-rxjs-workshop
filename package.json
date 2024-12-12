@@ -50,6 +50,7 @@
     "@nrwl/tao": "19.8.4",
     "@nrwl/workspace": "19.8.4",
     "@nx/eslint": "^20.2.2",
+    "@nx/eslint-plugin": "^20.2.2",
     "@nx/webpack": "^20.2.2",
     "@types/jest": "29.5.14",
     "@types/node": "22.10.2",
