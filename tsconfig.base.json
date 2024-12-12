@@ -10,17 +10,11 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@rxjs-dos/api-interfaces": ["libs/api-interfaces/src/index.ts"]
-    }
+    "paths": {}
   },
-  "exclude": ["node_modules", "tmp"],
-  "angularCompilerOptions": {
-    "disableTypeScriptVersionCheck": true
-  }
+  "exclude": ["node_modules", "tmp"]
 }
