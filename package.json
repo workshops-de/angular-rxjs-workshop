@@ -31,7 +31,7 @@
     "@nestjs/platform-express": "^10.4.15",
     "@nrwl/angular": "19.8.4",
     "faker": "^5.5.3",
-    "rxjs": "7.3.0",
+    "rxjs": "7.8.1",
     "typeface-roboto": "1.1.13",
     "zone.js": "0.15.0"
   },
