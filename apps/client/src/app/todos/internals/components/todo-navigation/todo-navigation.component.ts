@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { TodoSettingsComponent } from './todo-settings.component';
 import { MatDialog } from '@angular/material/dialog';
+import {  MatToolbarModule } from '@angular/material/toolbar';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'dos-todo-navigation',
+  imports: [MatToolbarModule, MatIcon],
   template: `
     <mat-toolbar color="primary">
       <mat-toolbar-row>

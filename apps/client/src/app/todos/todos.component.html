@@ -4,23 +4,29 @@
   (reload)="update$$.next()"
 ></dos-todo-updater>
 <main class="todo__app">
-  <ng-container *ngIf="todos$ | async as todos; else loadingIndicator">
+  @if(todos$ | async; as todos) {
     <dos-todo-counter
-      [count]="todos.length"
-      class="todo__component--spaced"
-    ></dos-todo-counter>
+    [count]="todos.length"
+    class="todo__component--spaced"
+  ></dos-todo-counter>
+
+  @for(todo of todos; track todo.id) {
     <dos-todo-checker
       [todo]="todo"
       (toggle)="completeOrIncompleteTodo($event)"
-      *ngFor="let todo of todos"
     ></dos-todo-checker>
-  </ng-container>
+  }
+  } @else {
+    @if(!isErrorShown) {
+      <div style="padding: 8px">
+        Get todos ready for you...
+      </div>
+      }
+  }
 
   <dos-todos-pinned [todos]="todos$ | async"></dos-todos-pinned>
 
   <ng-template #loadingIndicator>
-    <div *ngIf="!isErrorShown" style="padding: 8px">
-      Get todos ready for you...
-    </div>
+   
   </ng-template>
 </main>

@@ -5,20 +5,24 @@ import {
   TodoSettingsOptions
 } from '../../../todo-settings.service';
 import { Observable } from 'rxjs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'dos-todo-settings',
+  imports:[MatDialogModule, AsyncPipe],
   template: `
     <h2 mat-dialog-title>Settings</h2>
-    <mat-dialog-content *ngIf="settings$ | async as settings">
+    @if(settings$ | async; as settings) {
+    <mat-dialog-content>
       <input
         #todoTextInput
         type="number"
         class="todo__input"
         placeholder="What needs to be done?"
         [value]="settings.pollingInterval"
-        (change)="updateInterval($event)"
-        (keyup.enter)="updateInterval($event)"
+        (change)="updateInterval($any($event))"
+        (keyup.enter)="updateInterval($any($event))"
       />
 
       <div class="todo">
@@ -27,12 +31,13 @@ import { Observable } from 'rxjs';
           <input
             type="checkbox"
             [checked]="settings.isPollingEnabled"
-            (change)="togglePolling($event)"
+            (change)="togglePolling($any($event))"
           />
           <span class="todo__checkmark"></span>
         </label>
       </div>
     </mat-dialog-content>
+  }
 
     <mat-dialog-actions align="end">
       <button mat-dialog-close="" class="todo__button--primary">

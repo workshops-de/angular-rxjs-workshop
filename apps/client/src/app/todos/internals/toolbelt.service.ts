@@ -7,21 +7,21 @@ export class Toolbelt {
   constructor(private snackbar: MatSnackBar) {}
 
   toTodoApi(todo: Todo): TodoApi {
-    const mappedTodo = {
-      ...todo,
+    return {
+      id: todo.id,
       isComplete: todo.isDone,
+      isPinned: todo.isPinned,
+      text: todo.text
     };
-    delete mappedTodo.isDone;
-    return mappedTodo;
   }
 
   toTodo(todoApi: TodoApi): Todo {
-    const mappedTodo = {
-      ...todoApi,
+    return { 
+      id: todoApi.id,
       isDone: todoApi.isComplete,
-    };
-    delete mappedTodo.isComplete;
-    return mappedTodo;
+      isPinned: todoApi.isPinned,
+      text: todoApi.text
+    }
   }
 
   offerHardReload() {

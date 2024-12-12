@@ -1,11 +1,11 @@
-@import './todos/todo-button';
-@import './todos/todo-checker';
-@import './todos/todo-input';
-@import './todos/todo-layout';
-@import './todos/todo-link-navigation';
-@import './todos/todo-typography';
+@use 'todos/todo-button';
+@use 'todos/todo-checker';
+@use 'todos/todo-input';
+@use 'todos/todo-layout';
+@use 'todos/todo-link-navigation';
+@use 'todos/todo-typography';
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
   font-family: 'Roboto', sans-serif;

@@ -23,7 +23,16 @@ import { TodosPinnedComponent } from './components/todos-pinned/todos-pinned.com
 import { PinnedPipe } from './components/todos-pinned/pinned.pipe';
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    TodosRoutingModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+
     TodoCheckerComponent,
     TodoQuickAddComponent,
     TodosComponent,
@@ -35,17 +44,6 @@ import { PinnedPipe } from './components/todos-pinned/pinned.pipe';
     TodoNavigationComponent,
     TodosPinnedComponent,
     PinnedPipe
-  ],
-  entryComponents: [TodoSettingsComponent],
-  imports: [
-    CommonModule,
-    TodosRoutingModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIconModule,
-    MatListModule,
-    MatSnackBarModule,
-    MatToolbarModule
   ],
   exports: [TodosComponent],
   providers: [Toolbelt, TodoSettings, TodoService]

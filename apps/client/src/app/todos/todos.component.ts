@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { Observable, of, Subject } from 'rxjs';
 import { Todo } from './models';
 import { TodoService } from './todo.service';
+import { TodosPinnedComponent } from './internals/components/todos-pinned/todos-pinned.component';
+import { TodoUpdaterComponent } from './internals/components/todo-updater/todo-updater.component';
+import { TodoCounterComponent } from './internals/components/todo-counter/todo-counter.component';
+import { TodoCheckerComponent } from './internals/components/todo-checker/todo-checker.component';
+import { TodoNavigationComponent } from './internals/components/todo-navigation/todo-navigation.component';
 
 @Component({
   selector: 'dos-todos',
+  imports: [TodosPinnedComponent, TodoUpdaterComponent, TodoCounterComponent, TodoCheckerComponent, TodoNavigationComponent, AsyncPipe],
   templateUrl: './todos.component.html'
 })
 export class TodosComponent implements OnInit {
-  todos$: Observable<Todo[]>;
-  todosSource$ = this.todosService.loadFrequently();
-  todosInitial$: Observable<Todo[]>;
-  todosMostRecent$: Observable<Todo[]>;
+  private todosService = inject(TodoService);
 
-  update$$ = new Subject();
-  show$: Observable<boolean>;
-  hide$: Observable<boolean>;
+  isErrorShown = false;
+
+  todos$ = new Observable<Todo[]>();
+  todosSource$ = this.todosService.loadFrequently();
+  todosInitial$ = new Observable<Todo[]>();
+  todosMostRecent$ = new Observable<Todo[]>();
+
+  update$$ = new Subject<void>();
+  show$ = new Observable<boolean>();
+  hide$ = new Observable<boolean>();
   showReload$: Observable<boolean> = of(true);
 
-  constructor(private todosService: TodoService) {}
 
   ngOnInit(): void {
     // TODO: Control update of todos in App (back pressure)

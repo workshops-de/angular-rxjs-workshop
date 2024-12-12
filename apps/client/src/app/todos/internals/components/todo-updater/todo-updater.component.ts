@@ -2,8 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'dos-todo-updater',
-  template:
-    '<button *ngIf="isShown" (click)="reload.emit()" class="todo__button--primary">RELOAD</button>',
+  template: `
+    @if(isShown) {
+      <button (click)="reload.emit()" class="todo__button--primary">RELOAD</button>
+    }
+    `,
   styles: [
     `
       :host {
@@ -17,6 +20,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   ]
 })
 export class TodoUpdaterComponent {
-  @Input() isShown = false;
+  @Input() isShown: boolean|null = false;
   @Output() reload = new EventEmitter<void>();
 }

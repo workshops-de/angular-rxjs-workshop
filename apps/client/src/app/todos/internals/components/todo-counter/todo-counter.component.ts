@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./todo-counter.component.scss']
 })
 export class TodoCounterComponent {
-  @Input() count: number;
+  @Input() count = 0
 }
