@@ -6,7 +6,7 @@ import { Toolbelt } from './internals';
 import { Todo, TodoApi } from './models';
 import { TodoSettings } from './todo-settings.service';
 
-const todosUrl = 'http://localhost:3333/api';
+const todosUrl = '/api';
 
 @Injectable()
 export class TodoService {

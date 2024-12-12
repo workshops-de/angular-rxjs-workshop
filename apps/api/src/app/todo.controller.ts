@@ -7,7 +7,7 @@ import {
   HttpStatus,
   Put
 } from '@nestjs/common';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { Todo } from './todo';
 
 @Controller()
@@ -56,7 +56,7 @@ export class TodoController {
   }
 
   private flipCoin() {
-    if (faker.random.boolean()) {
+    if (faker.datatype.boolean()) {
       throw new HttpException(
         {
           status: HttpStatus.SERVICE_UNAVAILABLE,
@@ -68,7 +68,7 @@ export class TodoController {
   }
 
   private takeABreak(): Promise<void> {
-    const between1To3Seconds = faker.random.number({ min: 1000, max: 3000 });
+    const between1To3Seconds = faker.number.int({ min: 1000, max: 3000 });
 
     return new Promise((resolve) =>
       setTimeout(() => resolve(), between1To3Seconds)
@@ -79,14 +79,14 @@ export class TodoController {
     [4, 5, 6, 7].forEach((id) =>
       this.todosInMemory.update({
         id: `${id}`,
-        text: `⏱ ${faker.random.arrayElement([
+        text: `⏱ ${faker.helpers.arrayElement([
           'make ⛱',
           'read 📚',
           'eat 🥒',
           'hug 👨‍👩‍👧‍👧'
         ])}`,
-        isComplete: faker.random.boolean(),
-        isPinned: faker.random.boolean()
+        isComplete: faker.datatype.boolean(),
+        isPinned: faker.datatype.boolean()
       })
     );
   }
