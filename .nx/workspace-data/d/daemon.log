@@ -1,0 +1,65 @@
+[NX Daemon Server] - 2024-12-12T19:18:52.332Z - Started listening on: \\.\pipe\nx\C:\Users\GREGOR~1.WOI\AppData\Local\Temp\20da3d78ec13f8abd68d\d.sock
+[NX Daemon Server] - 2024-12-12T19:18:52.334Z - [WATCHER]: Subscribed to changes within: D:\Dev\workshops-de\trainings\angular-rxjs-workshop (native)
+[NX Daemon Server] - 2024-12-12T19:18:52.340Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T19:18:52.342Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-12-12T19:18:52.342Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T19:18:52.343Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-12-12T19:18:52.542Z - Time taken for 'Load Nx Plugin: D:\Dev\workshops-de\trainings\angular-rxjs-workshop\node_modules\nx\src\plugins\js' 196.9793ms
+[NX Daemon Server] - 2024-12-12T19:18:52.555Z - Time taken for 'Load Nx Plugin: D:\Dev\workshops-de\trainings\angular-rxjs-workshop\node_modules\nx\src\plugins\project-json\build-nodes\project-json' 209.3244ms
+[NX Daemon Server] - 2024-12-12T19:18:52.555Z - Time taken for 'Load Nx Plugin: D:\Dev\workshops-de\trainings\angular-rxjs-workshop\node_modules\nx\src\plugins\package-json' 209.91400000000002ms
+[NX Daemon Server] - 2024-12-12T19:18:52.598Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-12-12T19:18:52.599Z - [REQUEST]: 
+[NX Daemon Server] - 2024-12-12T19:18:52.599Z - [REQUEST]: 
+[NX Daemon Server] - 2024-12-12T19:18:52.605Z - Time taken for 'loadNxPlugins' 254.2769ms
+[NX Daemon Server] - 2024-12-12T19:18:52.606Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-12-12T19:18:52.607Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-12-12T19:18:52.607Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-12-12T19:18:52.608Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-12-12T19:18:52.610Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-12-12T19:18:52.610Z - Handled GLOB. Handling time: 0. Response time: 2.
+[NX Daemon Server] - 2024-12-12T19:18:52.745Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-12T19:18:52.745Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-12T19:18:52.745Z - Handled HASH_GLOB. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-12-12T19:18:52.748Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-12T19:18:52.749Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-12T19:18:52.749Z - Handled HASH_GLOB. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-12-12T19:18:52.778Z - Time taken for 'build-project-configs' 160.664ms
+[NX Daemon Server] - 2024-12-12T19:18:52.839Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+      An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - apps/api/eslint.config.js: Cannot find module '../../eslint.config.js'
+  Require stack:
+  - D:\Dev\workshops-de\trainings\angular-rxjs-workshop\apps\api\eslint.config.js
+      Error: Cannot find module '../../eslint.config.js'
+      Require stack:
+      - D:\Dev\workshops-de\trainings\angular-rxjs-workshop\apps\api\eslint.config.js
+          at Function._resolveFilename (node:internal/modules/cjs/loader:1249:15)
+          at Function._load (node:internal/modules/cjs/loader:1075:27)
+          at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+          at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+          at Module.require (node:internal/modules/cjs/loader:1340:12)
+          at require (node:internal/modules/helpers:138:16)
+          at Object.<anonymous> (D:\Dev\workshops-de\trainings\angular-rxjs-workshop\apps\api\eslint.config.js:1:20)
+          at Module._compile (node:internal/modules/cjs/loader:1565:14)
+          at Object..js (node:internal/modules/cjs/loader:1708:10)
+          at Module.load (node:internal/modules/cjs/loader:1318:32)
+    - apps/client/eslint.config.js: Cannot find module '@nx/eslint-plugin'
+  Require stack:
+  - D:\Dev\workshops-de\trainings\angular-rxjs-workshop\apps\client\eslint.config.js
+      Error: Cannot find module '@nx/eslint-plugin'
+      Require stack:
+      - D:\Dev\workshops-de\trainings\angular-rxjs-workshop\apps\client\eslint.config.js
+          at Function._resolveFilename (node:internal/modules/cjs/loader:1249:15)
+          at Function._load (node:internal/modules/cjs/loader:1075:27)
+          at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+          at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+          at Module.require (node:internal/modules/cjs/loader:1340:12)
+          at require (node:internal/modules/helpers:138:16)
+          at Object.<anonymous> (D:\Dev\workshops-de\trainings\angular-rxjs-workshop\apps\client\eslint.config.js:1:12)
+          at Module._compile (node:internal/modules/cjs/loader:1565:14)
+          at Object..js (node:internal/modules/cjs/loader:1708:10)
+          at Module.load (node:internal/modules/cjs/loader:1318:32)
+[NX Daemon Server] - 2024-12-12T19:18:52.843Z - Time taken for 'total execution time for createProjectGraph()' 64.08789999999999ms
+[NX Daemon Server] - 2024-12-12T19:18:52.844Z - Done responding to the client null
+[NX Daemon Server] - 2024-12-12T19:18:52.844Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 496. Response time: 5.
+[NX Daemon Server] - 2024-12-12T19:18:52.850Z - Closed a connection. Number of open connections: 1
