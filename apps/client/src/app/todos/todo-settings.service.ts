@@ -7,7 +7,7 @@ export interface TodoSettingsOptions {
   pollingInterval: number;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TodoSettings {
   private settings$$ = new BehaviorSubject<Partial<TodoSettingsOptions>>({
     isPollingEnabled: true,

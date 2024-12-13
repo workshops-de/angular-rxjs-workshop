@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Todo, TodoApi } from '../models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class Toolbelt {
   constructor(private snackbar: MatSnackBar) {}
 
@@ -16,12 +16,12 @@ export class Toolbelt {
   }
 
   toTodo(todoApi: TodoApi): Todo {
-    return { 
+    return {
       id: todoApi.id,
       isDone: todoApi.isComplete,
       isPinned: todoApi.isPinned,
       text: todoApi.text
-    }
+    };
   }
 
   offerHardReload() {

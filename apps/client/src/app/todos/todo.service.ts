@@ -8,7 +8,7 @@ import { TodoSettings } from './todo-settings.service';
 
 const todosUrl = '/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TodoService {
   constructor(
     private http: HttpClient,
