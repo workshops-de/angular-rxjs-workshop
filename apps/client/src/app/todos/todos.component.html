@@ -17,16 +17,10 @@
     ></dos-todo-checker>
   }
   } @else {
-    @if(!isErrorShown) {
-      <div style="padding: 8px">
-        Get todos ready for you...
-      </div>
-      }
+    <span style="padding: 8px">
+      Get todos ready for you...
+    </span>
   }
 
   <dos-todos-pinned [todos]="todos$ | async"></dos-todos-pinned>
-
-  <ng-template #loadingIndicator>
-   
-  </ng-template>
 </main>

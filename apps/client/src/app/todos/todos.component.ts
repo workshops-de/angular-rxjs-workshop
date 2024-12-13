@@ -11,13 +11,18 @@ import { TodoNavigationComponent } from './internals/components/todo-navigation/
 
 @Component({
   selector: 'dos-todos',
-  imports: [TodosPinnedComponent, TodoUpdaterComponent, TodoCounterComponent, TodoCheckerComponent, TodoNavigationComponent, AsyncPipe],
+  imports: [
+    TodosPinnedComponent,
+    TodoUpdaterComponent,
+    TodoCounterComponent,
+    TodoCheckerComponent,
+    TodoNavigationComponent,
+    AsyncPipe
+  ],
   templateUrl: './todos.component.html'
 })
 export class TodosComponent implements OnInit {
   private todosService = inject(TodoService);
-
-  isErrorShown = false;
 
   todos$ = new Observable<Todo[]>();
   todosSource$ = this.todosService.loadFrequently();
@@ -28,7 +33,6 @@ export class TodosComponent implements OnInit {
   show$ = new Observable<boolean>();
   hide$ = new Observable<boolean>();
   showReload$: Observable<boolean> = of(true);
-
 
   ngOnInit(): void {
     // TODO: Control update of todos in App (back pressure)
